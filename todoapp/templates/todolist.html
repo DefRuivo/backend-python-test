@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %} Todolist {% endblock%}
+
+{% block content %}
+<div class="todo-wrapper">
+    <div class="todo-box">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages%}
+                <div class="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+        <form name="form-add" method="POST" action="{{url_for('bp.todolist_post')}}">
+            <div class="flex-div-form">
+                <hr class="hr-top">
+                {{ form.csrf_token }}
+                {{ form.description(class_="form-description") }}
+                <hr class="hr-bottom">
+                <button class="button-add-description" 
+                type="submit" name="submit_button" value="">+</button>
+            </div>
+        </form>
+        <table class="table">
+            <thead class="thead">
+            <tr class="thead-tr">
+                <th class="text-center">No.</th>
+                <th class="text-center">User</th>
+                <th class="text-center">Description</th>
+            </tr>
+            </thead>
+            {% if todos %}
+            {% for todo in todos %}
+            <tr class="table-tr">
+                <td class="text-center">{{ todo.id }}</td>
+                <td class="text-center">{{ todo.user_id }}</td>
+                <td class="text-center">{{ todo.description }}</td>
+                <td class="text-center">
+                {{ form.csrf_token }}
+                <form name="form_delete" method="POST" action="{{url_for('bp.delete', id=todo.id)}}">
+                    <button class="button-delete" 
+                    type="submit"> X </button>
+                </form>
+                </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+    </div>
+</div>
+{% endblock %}

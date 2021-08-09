@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"sqltools.connections": [
+			{
+				"previewLimit": 50,
+				"driver": "SQLite",
+				"database": "C:\\Users\\Guilherme\\Repositorios\\todo_list\\todoapp\\test.db",
+				"name": "aaaa"
+			}
+		],
+		"sqltools.useNodeRuntime": true
+	}
+}

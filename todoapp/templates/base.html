@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/mystyles.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/reset.css')}}">
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <nav class="navbar">
+            <ul class="nav-ul">
+                <li class="nav-li-home">
+                    <a href="{{url_for("bp.login")}}">
+                        <img src="https://img.icons8.com/material-outlined/24/000000/home--v2.png"/> Home
+                    </a>
+                </li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-li-logout">
+                    <a href="{{url_for("bp.logout")}}">
+                        <img src="https://img.icons8.com/material-outlined/24/000000/logout-rounded-left.png"/> Logout
+                    </a>
+                </li>
+                {% endif %}
+                {% if not current_user.is_authenticated %}
+                <li class="nav-li-signup">
+                    <a href="{{url_for("bp.signup")}}">
+                        <img src="https://img.icons8.com/material-outlined/24/000000/login-rounded-down.png"/> Sign up
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% block content%}
+        {% endblock %}
+    </body>
+</html>

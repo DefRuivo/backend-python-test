@@ -1,0 +1,7 @@
+migrations/
+.idea
+.vscode
+__pycache__
+venv
+.flaskenv
+todoapp/*.db

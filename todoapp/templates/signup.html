@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %} Signup {% endblock%}
+
+{% block content %}
+<div class="container-wrapper">
+  <div class="container">
+    <h1> Sign up </h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <form class="signup-form" method="POST" action="/signup">
+      <dl class="dl-login-form">
+        {{ form.csrf_token }}
+        {{ form.username }}
+        {{ form.password }}
+        <input type="submit" class="submit-button" value="Signup!">
+      </dl>
+    </form>
+  </div>
+</div>
+{% endblock %}
